@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body class="h-screen bg-gray-100 font-opensans">
+    <%- include('./partials/nav.ejs') %>
+    <section class="gpa-wrapper mt-40 my-24">
+      <!-- Subject Selection -->
+      <div
+        class="popup-container mx-auto bg-white shadow-xl rounded-xl p-8 max-w-sm md:max-w-xl w-full"
+      >
+        <h1 class="text-3xl font-semibold text-center mb-10">GPA Calculator</h1>
+        <div class="inp_container grid gap-3 mb-4">
+          <label class="text-xl" for="department">Departments</label>
+          <select
+            class="bg-red-100 p-3.5 rounded-md"
+            name="department"
+            id="department"
+            onchange="loadSubjects()"
+          >
+            <option value="ICT">ICT</option>
+            <option value="ET">ET</option>
+            <option value="BST">BST</option>
+          </select>
+        </div>
+        <div class="inp_container grid gap-3 mb-4">
+          <label class="text-xl" for="level">Level</label>
+          <select
+            class="bg-red-100 p-3.5 rounded-md"
+            name="level"
+            id="level"
+            onchange="loadSubjects()"
+          >
+            <option value="Level-I">Level-I</option>
+            <option value="Level-II">Level-II</option>
+            <option value="Level-III">Level-III</option>
+            <option value="Level-IV">Level-IV</option>
+          </select>
+        </div>
+        <div class="inp_container grid gap-3 mb-4">
+          <label class="text-xl" for="semester">Semester</label>
+          <select
+            class="bg-red-100 p-3.5 rounded-md"
+            name="semester"
+            id="semester"
+            onchange="loadSubjects()"
+          >
+            <option value="Semester-I">Semester-I</option>
+            <option value="Semester-II">Semester-II</option>
+          </select>
+        </div>
+        <div class="inp_container grid gap-3 mb-4">
+          <div
+            class="ml-auto inp_container flex items-center justify-center gap-2"
+          >
+            <label class="text-base" for="selectAll">check All</label>
+            <input type="checkbox" name="selectAll" id="selectAll" />
+          </div>
+          <div class="subject-list my-2"></div>
+        </div>
+        <div class="flex items-center justify-between wrapper">
+          <p id="gpa" class="font-bold text-xl">Total GPA :</p>
+          <button
+            id="calc-btn"
+            class="block font-semibold rounded-md bg-red-900 transform transition-transform ease-in-out hover:bg-red-700 hover:scale-105 text-white py-3 px-5 w-28"
+          >
+            Calculate
+          </button>
+        </div>
+      </div>
+
+      <div
+        class="mx-auto w-4/5 mt-24"
+        id="accordion-flush"
+        data-accordion="collapse"
+        data-active-classes="bg-red-900 dark:bg-red-900 text-white"
+        data-inactive-classes="text-gray-500 dark:text-gray-400"
+      >
+        <h2 class="text-3xl md:text-4xl font-bold mb-5">FAQ</h2>
+
+        <h2 id="accordion-flush-heading-1">
+          <button
+            type="button"
+            class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700 gap-3"
+            data-accordion-target="#accordion-flush-body-1"
+            aria-expanded="true"
+            aria-controls="accordion-flush-body-1"
+          >
+            <span>Courses And Subjects Offered?</span>
+            <svg
+              data-accordion-icon
+              class="w-3 h-3 rotate-180 shrink-0"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 10 6"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5 5 1 1 5"
+              />
+            </svg>
+          </button>
+        </h2>
+        <div
+          id="accordion-flush-body-1"
+          class="hidden"
+          aria-labelledby="accordion-flush-heading-1"
+        >
+          <div class="py-5 border-b border-gray-200 dark:border-gray-700">
+            <img
+              class="mx-auto"
+              src="/img/Subjects_and_Courses.png"
+              alt=""
+              srcset=""
+            />
+          </div>
+        </div>
+
+        <h2 id="accordion-flush-heading-2">
+          <button
+            type="button"
+            class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700 gap-3"
+            data-accordion-target="#accordion-flush-body-2"
+            aria-expanded="false"
+            aria-controls="accordion-flush-body-2"
+          >
+            <span>How GPA is Calculated?</span>
+            <svg
+              data-accordion-icon
+              class="w-3 h-3 shrink-0"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 10 6"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5 5 1 1 5"
+              />
+            </svg>
+          </button>
+        </h2>
+        <div
+          id="accordion-flush-body-2"
+          class="hidden"
+          aria-labelledby="accordion-flush-heading-2"
+        >
+          <div class="py-5 border-b border-gray-200 dark:border-gray-700">
+            <img class="mx-auto mb-4 w-3/4" src="/img/gpa_formulae.png" alt="" srcset="">
+            <p class="mb-2 text-gray-500 dark:text-gray-400">
+              The performance of a student is determined by the Grade Point
+              Average (GPA). The calculation of the GPA shall be based on the
+              summation of Grade Point Values earned for all course units
+              considered for calculation of the GPA, weighted according to
+              number of credits as per the following formula, where Ci is the
+              number of credits for the ith course unit and GPVi is the Grade
+              Point Value earned for that course unit and n is the number of GPA
+              course units.
+            </p>
+          </div>
+        </div>
+
+        <h2 id="accordion-flush-heading-3">
+          <button
+            type="button"
+            class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 dark:text-gray-400 border-b border-gray-200 dark:border-gray-700 gap-3"
+            data-accordion-target="#accordion-flush-body-3"
+            aria-expanded="false"
+            aria-controls="accordion-flush-body-3"
+          >
+            <span
+              >Identify Subject Code?</span
+            >
+            <svg
+              data-accordion-icon
+              class="w-3 h-3 shrink-0"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 10 6"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5 5 1 1 5"
+              />
+            </svg>
+          </button>
+        </h2>
+        <div
+          id="accordion-flush-body-3"
+          class="hidden"
+          aria-labelledby="accordion-flush-heading-3"
+        >
+          <div class="py-5 border-b border-gray-200 dark:border-gray-700">
+            <img class="mx-auto mb-4 w-3/4" src="/img/subject_code.png" alt="" srcset="">
+          </div>
+        </div>
+      </div>
+    </section>
+    <%- include('./partials/footer.ejs') %>
+    <script src="/js/gpaCalc.js"></script>
+  </body>
+</html>
