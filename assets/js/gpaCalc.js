@@ -307,9 +307,12 @@ const subjectList = document.querySelector(".subject-list");
 const gpaWrapper = document.querySelector(".gpa-wrapper");
 const gpalabel = document.getElementById("gpa");
 const selectAll = document.getElementById("selectAll");
+const sem = document.getElementById("sem");
+const popupContainer = document.querySelector(".popup-container");
 
 // loading all subjects to subject selection
 function loadSubjects() {
+  genMajorsBST();
   restoreGPALabel();
   generateSubEntries();
 }
@@ -319,10 +322,48 @@ function round(value, decimals) {
   return Number(Math.round(value + "e" + decimals) + "e-" + decimals);
 }
 
+// generating majors section for BST
+function genMajorsBST(){
+  const stream_wrapper = document.getElementById("stream-wrapper");
+  if (!stream_wrapper) {
+    if (dep.value == "BST" && level.value == "Level-IV") {
+      const ele = `
+    <div id="stream-wrapper" class="inp_container grid gap-3 mb-4">
+        <label class="text-xl" for="stream">Technology Stream</label>
+        <select
+          class="bg-red-100 p-3.5 rounded-md"
+          name="stream"
+          id="stream"
+          onchange="loadSubjects()"
+        >
+          <option value="Food, Fisheries and Agriculture Technology Stream">Food, Fisheries and Agriculture</option>
+          <option value="Natural Products and Environmental Technology Stream">Natural Products and Environmental</option>
+        </select>
+      </div>
+  `;
+      sem.insertAdjacentHTML("beforebegin", ele);
+      generateSubEntries();
+    }
+  } else {
+    if (dep.value != "BST" || level.value != "Level-IV") {
+      stream_wrapper.remove();
+    }
+  }
+}
+
 // Generating the subject entries for gpa calculation
 function generateSubEntries() {
   deleteAllSubEntries();
-  const subjects = data[`${dep.value}`][`${level.value}`][`${semester.value}`];
+  let subjects;
+  if (document.getElementById("stream-wrapper")) {
+    const stream = document.getElementById("stream");
+    subjects =
+      data[`${dep.value}`][`${level.value}`][`${stream.value}`][
+        `${semester.value}`
+      ];
+  } else {
+    subjects = data[`${dep.value}`][`${level.value}`][`${semester.value}`];
+  }
   for (const sub in subjects) {
     generateSubEntry(sub, subjects[sub]);
   }
@@ -395,7 +436,6 @@ selectAll.addEventListener("change", (e) => {
     }
   }
 });
-
 
 // Calculate Total GPA
 function calcTotalGPA() {
