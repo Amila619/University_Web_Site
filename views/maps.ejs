@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs') %>
+  <body class="h-screen bg-gray-100 font-opensans">
+    <%- include('./partials/nav.ejs') %>
+    <section class="mt-24">
+      <h2 class="font-bold md:text-6xl text-5xl text-center pt-8 tracking-wide">
+        Maps
+      </h2>
+      <div class="w-4/5 mx-auto pt-24 mb-12 md:mb-20">
+        <img src="/img/map/view.jpg" alt="" />
+      </div>
+      <div class="relative flex items-center img-sec-wrapper origin-center w-4/5 mx-auto overflow-hidden gap-4 md:gap-6 pb-24">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="right-arrow size-6 md:size-10 cursor-pointer transform hover:scale-125 duration-100 delay-0"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m18.75 4.5-7.5 7.5 7.5 7.5m-6-15L5.25 12l7.5 7.5"
+          />
+        </svg>
+        <div class="slider-section origin-center w-full flex items-center justify-between p-2 gap-4 md:gap-6 mx-auto overflow-hidden">
+          <div class="img-wrapper flex-grow flex-shrink-0 cursor-pointer rounded-md transform hover:scale-105 hover:border-1 hover:border-red-500 duration-100 delay-0">
+            <img
+              src="/img/map/view.jpg"
+              alt=""
+              class="w-[220px] h-[120px] md:w-[280px] md:h-[180px] object-cover rounded-md"
+            />
+          </div>
+          <div class="img-wrapper flex-grow flex-shrink-0 cursor-pointer rounded-md transform hover:scale-105 hover:border-1 hover:border-red-500 duration-100 delay-0">
+            <img
+              src="/img/map/view.jpg"
+              alt=""
+              class="w-[220px] h-[120px] md:w-[280px] md:h-[180px] object-cover rounded-md"
+            />
+          </div>
+          <div class="img-wrapper flex-grow flex-shrink-0 cursor-pointer rounded-md transform hover:scale-105 hover:border-1 hover:border-red-500 duration-100 delay-0">
+            <img
+              src="/img/map/view.jpg"
+              alt=""
+              class="w-[220px] h-[120px] md:w-[280px] md:h-[180px] object-cover rounded-md"
+            />
+          </div>
+        </div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="left-arrow size-6 md:size-10 cursor-pointer transform hover:scale-125 duration-100 delay-0"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m5.25 4.5 7.5 7.5-7.5 7.5m6-15 7.5 7.5-7.5 7.5"
+          />
+        </svg>
+      </div>
+      <div class="map-wrapper w-4/5 mx-auto pb-24">
+        <%- include('./partials/ref.ejs', { heading: 'Computer Science', img_: 'img_15.jpg', data:[
+        {
+          floor: "Ground Floor",
+          facilities: ["Student Lounge", "Computer Lab"]
+        },
+        {
+          floor: "First Floor",
+          facilities: ["Software Engineering Lab", "Seminar Room", "Faculty Offices"]
+        },
+        {
+          floor: "Second Floor",
+          facilities: ["Artificial Intelligence Lab", "Networking Lab", "Collaborative Study Room"]
+        }
+      ]}) %>
+      </div>
+    </section>
+    <script>
+      const lefta = document.querySelector(".left-arrow");
+      const righta = document.querySelector(".right-arrow");
+      const sliderSec = document.querySelector(".slider-section");
+
+      lefta.addEventListener("click", () => {
+        sliderSec.style.transform = "translateX(400px)";
+      });
+
+      righta.addEventListener("click", () => {
+        sliderSec.style.transform = "translateX(-400px)";
+      });
+    </script>
+    <%- include('./partials/footer.ejs') %>
+  </body>
+</html>
