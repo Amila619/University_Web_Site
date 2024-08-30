@@ -1,5 +1,5 @@
 const data = {
-  ICT: {
+  "ICT": {
     "Level-I": {
       "Semester-I": {
         "Essential of ICT and Computer Hardware": 1112,
@@ -81,7 +81,7 @@ const data = {
       },
     },
   },
-  ET: {
+  "ET": {
     "Level-I": {
       "Semester-I": {
         "Workshop Technology I": 1111,
@@ -149,7 +149,7 @@ const data = {
     },
     "Level-IV": {
       "Semester-I": {
-        Mechatronics: 4113,
+        "Mechatronics": 4113,
         "Electronic System Design": 4123,
         "Mechanics of Machines": 4132,
         "Machine Design": 4142,
@@ -163,13 +163,13 @@ const data = {
         "Programmable Digital Electronics": 4212,
         "Power Electronics and Applications": 4223,
         "Fluid Dynamics and Machinery": 4232,
-        Nanotechnology: 4243,
+        "Nanotechnology": 4243,
         "Refrigeration and Air Conditioning": 4252,
         "Research and Design project": 4068,
       },
     },
   },
-  BST: {
+  "BST": {
     "Level-I": {
       "Semester-I": {
         "Information Technology I": 1112,
@@ -179,7 +179,7 @@ const data = {
         "Animal Physiology": 1152,
         "Introduction to Environmental Science": 1162,
         "Analytical Chemistry": 1172,
-        Thermodynamics: 1181,
+        "Thermodynamics": 1181,
         "English I": 1114,
       },
       "Semester-II": {
@@ -202,7 +202,7 @@ const data = {
         "Enzyme Technology": 2132,
         "Bioenergy Systems": 2142,
         "Bio-seperation Processes": 2152,
-        Biomechanics: 2162,
+        "Biomechanics": 2162,
         "Business Economics": 2112,
         "Soft Skills": 2122,
         "English III": 2122,
@@ -211,7 +211,7 @@ const data = {
         "Conservation Technologies": 2212,
         "Geoinfomatics and Biosystems": 2222,
         "Indigenous Knowledge in Biosystems management": 2232,
-        Nanotechnology: 2242,
+        "Nanotechnology": 2242,
         "Gene Technology": 2253,
         "Statistical applications in biosystems technology": 2262,
         "Probability and Statistics": 2213,
@@ -287,13 +287,13 @@ const data = {
 // grade values
 const gradeVals = {
   "A+": 4.0,
-  A: 4.0,
+  "A": 4.0,
   "A-": 3.7,
   "B+": 3.3,
-  B: 3.0,
+  "B": 3.0,
   "B-": 2.7,
   "C+": 2.3,
-  C: 2.0,
+  "C": 2.0,
 };
 
 // GPA Calculator
